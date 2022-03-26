@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/templates/layout.xhtml">
+	<ui:define name="menu">
+		<ui:include src="/includes/menu.xhtml" />
+	</ui:define>
+	<ui:define name="conteudo">
+		<h:outputStylesheet library="css" name="estilo.css" />
+		<div class="titulo">
+			<h1 align="center">EDIÇÃO DE FUNCIONÁRIO</h1>
+		</div>
+		<div align="center" class="formulario">
+			<table>
+				<tr>
+					<td align="center" valign="middle"><h:body>
+
+							<div class="pesquisa">
+								<h:form>
+									<p:messages id="messages" showDetail="true" />
+
+									<h:panelGrid columns="4" cellpadding="5"
+										style="margin-bottom:10px">
+										<p:inputText id="pesquisa"
+											value="#{Funcionarios.idFuncionario}" required="true"
+											label="Pesquisa" />
+										<h:commandButton action="#{Funcionarios.Pesquisar}"
+											value="Procurar" />
+									</h:panelGrid>
+								</h:form>
+							</div>
+							<h:form id="cadastro">
+								<h:panelGrid class="fonte" columns="3">
+
+									<h:outputLabel value="ID funcionario:" />
+									<p:inputText minlength="6" maxlength="8"
+										value="#{Funcionarios.idFuncionario}" name="Senha" size="8" />
+									<p:spacer width="5px" />
+									<h:outputLabel value="Nome do Funcionario:" />
+									<p:inputText maxlength="60"
+										value="#{Funcionarios.nomeFuncionario}"
+										name="nomeFuncionarios" size="61" />
+									<p:spacer width="5px" />
+									<h:outputLabel value="Cargo:" />
+									<p:inputText maxlength="25" value="#{Funcionarios.cargo}"
+										name="Cargo" size="25" />
+									<p:spacer width="5px" />
+									<h:outputLabel value="Login:" />
+									<p:inputText maxlength="10" value="#{Funcionarios.login}"
+										name="Login" size="10" />
+									<p:spacer width="5px" />
+									<h:outputLabel value="Senha:" />
+									<p:inputText minlength="6" maxlength="8"
+										value="#{Funcionarios.senha}" name="Senha" size="8" />
+
+								</h:panelGrid>
+								<p:spacer width="10px" />
+								<h:panelGrid columns="6">
+									<p:spacer width="1px" />
+									<h:commandButton update="cadastroproduto" value="  Deletar  "
+										action="#{Funcionarios.Delete}" onclick="if (!confirm('Deseja realmente excluir o funcionário #{Funcionarios.nomeFuncionario}?')) return false;" />
+									<p:spacer width="10px" />
+									<h:commandButton value="  Alterar  "
+										action="#{Funcionarios.Update}" onclick="if (!confirm('Deseja realmente alterar o funcionário #{Funcionarios.nomeFuncionario}?')) return false;" />
+
+								</h:panelGrid>
+							</h:form>
+						</h:body></td>
+				</tr>
+			</table>
+		</div>
+	</ui:define>
+
+	<ui:define name="footer">
+     rodapé
+</ui:define>
+</ui:composition>
+</html>

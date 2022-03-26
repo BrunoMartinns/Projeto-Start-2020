@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/templates/layout.xhtml">
+	<h:outputStylesheet library="css" name="css/estilo.css" />
+	<ui:define name="menu">
+		<ui:include src="/includes/menu.xhtml" />
+	</ui:define>
+	<ui:define name="conteudo">
+		<script language="javascript">
+			function sem_numero(e, args) {
+				if (document.all) {
+					var evt = event.keyCode;
+				} else {
+					var evt = e.charCode;
+				}
+				var valid_chars = 'abcdefghijlmnopqrstuvxzwykABCDEFGHIJLMNOPQRSTUVXZWYK áéíóúâêôçãõü'
+						+ args;
+				var chr = String.fromCharCode(evt);
+				if (valid_chars.indexOf(chr) > -1) {
+					return true;
+				}
+				return false;
+			}
+		</script>
+
+		<script language="javascript">
+			function sem_acento(e, args) {
+				if (document.all) {
+					var evt = event.keyCode;
+				} else {
+					var evt = e.charCode;
+				}
+				var valid_chars = '0123456789';
+				var chr = String.fromCharCode(evt);
+				if (valid_chars.indexOf(chr) > -1) {
+					return true;
+				}
+				return false;
+			}
+		</script>
+
+		<div class="titulo">
+			<h1 align="center">CADASTRO DE PRODUTO</h1>
+		</div>
+		<div align="center" class="formulario">
+			<table>
+				<tr>
+					<td align="center" valign="middle"><h:body>
+							<h:form id="editarproduto">
+								<p:messages showDetail="false" />
+
+								<h:panelGrid class="fonte" columns="2">
+									<h:outputLabel value="Nome do Produto:" />
+									<p:inputText maxlength="30" value="#{Produtos.nomeProduto}"
+										onkeypress="return sem_numero(event);" required="true"
+										requiredMessage="Campo 'Nome do produto' necessário!"
+										name="nomeDoProduto" size="34" />
+
+									<h:outputLabel value="Seção:" />
+									<p:inputText maxlength="10" value="#{Produtos.secao}"
+										onkeypress="return sem_numero(event);" required="true"
+										requiredMessage="Campo 'Seção' necessário!" name="descriacao"
+										size="10" />
+
+									<h:outputLabel value="Código de barras:" />
+									<p:inputText maxlength="19" value="#{Produtos.codigoBarras}"
+										onkeypress="return sem_acento(event);" required="true"
+										requiredMessage="Campo 'Código de barras' necessário!"
+										name="codigoDeBarras" size="21" />
+
+									<h:outputLabel value="Unidade medida:" />
+									<p:inputText maxlength="4" value="#{Produtos.unidadeMedida}"
+										onkeypress="return sem_numero(event);" required="true"
+										requiredMessage="Campo 'Unidade medida' necessário!"
+										name="UnidadeD	eMedida" size="4" />
+
+								</h:panelGrid>
+								<h:panelGrid columns="1">
+									<p:spacer width="1px" />
+									<h:commandButton value="  Enviar  " action="#{Produtos.Insert}" onclick="if (!confirm('Confirmar cadastro?')) return false;" />
+								</h:panelGrid>
+							</h:form>
+						</h:body></td>
+				</tr>
+			</table>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

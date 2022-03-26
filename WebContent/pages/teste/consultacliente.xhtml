@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/templates/layout.xhtml">
+	<ui:define name="menu">
+		<ui:include src="/includes/menu.xhtml" />
+	</ui:define>
+	<ui:define name="conteudo">
+		<h:outputStylesheet name="estilos.css"></h:outputStylesheet>
+		<script type="text/javascript">
+			function handleDrop(event, ui) {
+				var droppedCar = ui.draggable;
+
+				droppedCar.fadeOut('fast');
+			}
+		</script>
+		<div class="titulo"> 
+			<h1 align="center">CONSULTA DE CLIENTE</h1>
+		</div>
+		
+			<h:form class="pesquisa">
+			<p:messages id="messages" showDetail="true" />
+
+			<h:panelGrid columns="3" cellpadding="5" style="margin-bottom:10px">
+				<p:inputText id="pesquisa" value="#{watermarkView.keyword}"
+					required="true" label="Keyword" />
+				<p:watermark for="pesquisa" value="Pesquise na lista"
+					id="watermar" />
+			</h:panelGrid>
+
+			<p:commandButton id="regular" action="#{watermarkView.search}"
+				value="Regular" ajax="false" />
+			<p:commandButton id="ajax" action="#{watermarkView.search}"
+				value="Ajax" onclick="PrimeFaces.cleanWatermarks();"
+				oncomplete="PrimeFaces.showWatermarks();" update="messages" />
+		</h:form>
+		<h:form class="formulario">
+			<p:fieldset id="availableCarsField">
+				<p:dataTable id="availableCars" var="car"
+					value="#{dndCarsView.cars}">
+					<p:column style="width:20px">
+						<h:outputText id="dragIcon" styleClass="ui-icon pi pi-plus" />
+						<p:draggable for="dragIcon" revert="true" helper="clone" />
+					</p:column>
+
+					<p:column headerText="Id">
+						<h:outputText value="#{car.id}" />
+					</p:column>
+
+					<p:column headerText="Nome">
+						<h:outputText value="#{car.year}" />
+					</p:column>
+
+					<p:column headerText="CPF">
+						<h:outputText value="#{car.brand}" />
+					</p:column>
+
+					<p:column headerText="Telefone">
+						<h:outputText value="#{car.color}" />
+					</p:column>
+				</p:dataTable>
+			</p:fieldset>
+
+			<p:fieldset id="selectedCars" legend="Selected Cars"
+				style="margin-top:20px">
+				<p:outputPanel id="dropArea">
+					<h:outputText value="!!!Drop here!!!"
+						rendered="#{empty dndCarsView.droppedCars}"
+						style="font-size:24px;" />
+					<p:dataTable id="selectedCarsTable" var="car"
+						value="#{dndCarsView.droppedCars}"
+						rendered="#{not empty dndCarsView.droppedCars}">
+						<p:column headerText="Id">
+							<h:outputText value="#{car.id}" />
+						</p:column>
+
+						<p:column headerText="Year">
+							<h:outputText value="#{car.year}" />
+						</p:column>
+
+						<p:column headerText="Brand">
+							<h:outputText value="#{car.brand}" />
+						</p:column>
+
+						<p:column headerText="Color">
+							<h:outputText value="#{car.color}" />
+						</p:column>
+
+						<p:column style="width:32px">
+							<p:commandButton update=":carForm:display"
+								oncomplete="PF('carDialog').show()" icon="pi pi-search">
+								<f:setPropertyActionListener value="#{car}"
+									target="#{dndCarsView.selectedCar}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</p:outputPanel>
+			</p:fieldset>
+
+			<p:droppable for="selectedCars" tolerance="touch"
+				activeStyleClass="ui-state-highlight" datasource="availableCars"
+				onDrop="handleDrop">
+				<p:ajax listener="#{dndCarsView.onCarDrop}"
+					update="dropArea availableCars" />
+			</p:droppable>
+
+			<p:dialog header="Car Detail" widgetVar="carDialog" resizable="false"
+				draggable="false" showEffect="fade" hideEffect="fade" modal="true">
+
+				<p:outputPanel id="display">
+					<h:panelGrid columns="2" cellpadding="4"
+						rendered="#{not empty dndCarsView.selectedCar}">
+						<f:facet name="header">
+							<p:graphicImage
+								name="demo/images/car/#{dndCarsView.selectedCar.brand}.gif" />
+						</f:facet>
+
+						<h:outputText value="Id:" />
+						<h:outputText value="#{dndCarsView.selectedCar.id}"
+							style="font-weight:bold" />
+
+						<h:outputText value="Year:" />
+						<h:outputText value="#{dndCarsView.selectedCar.year}"
+							style="font-weight:bold" />
+
+						<h:outputText value="Brand:" />
+						<h:outputText value="#{dndCarsView.selectedCar.brand}"
+							style="font-weight:bold" />
+
+						<h:outputText value="Color:" />
+						<h:outputText value="#{dndCarsView.selectedCar.color}"
+							style="font-weight:bold" />
+					</h:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

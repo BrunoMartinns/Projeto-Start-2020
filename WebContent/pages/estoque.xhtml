@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/templates/layout.xhtml">
+	<h:outputStylesheet library="css" name="css/estilo.css" />
+	<ui:define name="menu">
+		<ui:include src="/includes/menu.xhtml" />
+	</ui:define>
+	<ui:define name="conteudo">
+
+		<script language="javascript">
+			function sem_numero(e, args) {
+				if (document.all) {
+					var evt = event.keyCode;
+				} else {
+					var evt = e.charCode;
+				}
+				var valid_chars = 'abcdefghijlmnopqrstuvxzwykABCDEFGHIJLMNOPQRSTUVXZWYK áéíóúâêôçãõü'
+						+ args;
+				var chr = String.fromCharCode(evt);
+				if (valid_chars.indexOf(chr) > -1) {
+					return true;
+				}
+				return false;
+			}
+		</script>
+		<script language="javascript">
+			function sem_acento(e, args) {
+				if (document.all) {
+					var evt = event.keyCode;
+				} else {
+					var evt = e.charCode;
+				}
+				var valid_chars = '0123456789' + args;
+				var chr = String.fromCharCode(evt);
+				if (valid_chars.indexOf(chr) > -1) {
+					return true;
+				}
+				return false;
+			}
+		</script>
+
+		<div class="titulo">
+			<h1 align="center">EDIÇÃO DE ESTOQUE</h1>
+		</div>
+		<div align="center" class="formulario">
+			<table>
+				<tr>
+					<td align="center" valign="middle"><h:body>
+
+							<div class="pesquisa">
+								<h:form>
+									<p:messages showDetail="false" />
+
+									<h:panelGrid columns="4" cellpadding="5"
+										style="margin-bottom:10px">
+										<p:inputText id="pesquisa" value="#{Produtos.codigoBarras}"
+											required="true" label="Pesquisa" />
+										<p:watermark for="pesquisa" value="Pesquise na lista"
+											id="watermar" />
+										<h:commandButton action="#{Produtos.Pesquisar}"
+											value="Procurar"/>
+									</h:panelGrid>
+								</h:form>
+							</div>
+							<h:form>
+
+								<h:panelGrid class="fonte" columns="2">
+
+									<h:outputLabel value="Nome do Produto:" />
+									<p:inputText readonly="true" maxlength="30"
+										onkeypress="return sem_numero(event);" required="true"
+										requiredMessage="Campo 'Nome do Produto' necessário!"
+										value="#{Produtos.nomeProduto} " name="nomeDoProduto"
+										size="30" />
+
+									<h:outputLabel value="Código de barra:" />
+									<p:inputText readonly="true" maxlength="30"
+										onkeypress="return sem_acento(event);" required="true"
+										requiredMessage="Campo 'Código de barra' necessário!"
+										value="#{Produtos.codigoBarras}" name="codigodeBarra"
+										size="30" />
+
+									<h:outputLabel value="Lote:" />
+									<p:inputText maxlength="10"
+										onkeypress="return sem_acento(event);" required="true"
+										requiredMessage="Campo 'Lote' necessário!"
+										value="#{Produtos.lote}" size="19" />
+
+									<h:outputLabel value="Validade:" />
+									<p:inputText maxlength="10" mask="99/99/9999"
+										onkeypress="return sem_acento(event);" required="true"
+										requiredMessage="Campo 'Validade' necessário!"
+										value="#{Produtos.validade}" size="10" />
+
+									<h:outputLabel value="Quantidade de lote:" />
+									<p:inputText maxlength="10"
+										onkeypress="return sem_acento(event);" required="true"
+										requiredMessage="Campo 'Quantidade de lote' necessário!"
+										value="#{Produtos.quantidadeLote}" size="10" />
+
+									<h:outputLabel value="Quantidade Total:" />
+									<p:inputText maxlength="10"
+										onkeypress="return sem_acento(event);" required="true"
+										requiredMessage="Campo 'Quantidade Total' necessário!"
+										value="#{Produtos.quantidadeTotal}" name="valorDeUnidade"
+										size="10" />
+
+									<h:outputLabel value="Valor de Lote:" />
+									<p:inputText maxlength="10"
+										onkeypress="return sem_acento(event);" required="true"
+										requiredMessage="Campo 'Valor de Lote' necessário!"
+										value="#{Produtos.valorLote}" name="valorDeUnidade" size="10" />
+								</h:panelGrid>
+								<h:panelGrid columns="1">
+									<p:spacer width="1px" />
+									<h:commandButton value="  Enviar  " update="estoque"
+										action="#{Produtos.InsertEstoque}" />
+								</h:panelGrid>
+							</h:form>
+						</h:body></td>
+				</tr>
+			</table>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/templates/layout.xhtml">
+	<ui:define name="menu">
+		<ui:include src="/includes/menu.xhtml" />
+	</ui:define>
+	<ui:define name="conteudo">
+		<h:outputStylesheet name="estilos.css"></h:outputStylesheet>
+		<div class="titulo">
+			<h1 align="center">CADASTRO DE PRODUTO</h1>
+		</div>
+		<div class="formulario">
+			<table>
+				<tr>
+					<td align="center" valign="middle"><h:body>
+							<h:form>
+								<h:panelGrid class="fonte" columns="2">
+									<h:outputLabel value="Nome do Produto:" />
+									<h:inputText size="30" />
+									<h:outputLabel value="Descrição:" />
+									<h:inputTextarea maxlegth="100"></h:inputTextarea>
+									<h:outputLabel value="Unidade de Medida:" />
+									<h:inputText size="4" />
+									<h:outputLabel value="Código de barra:" />
+									<h:inputText size="30" />
+									<h:outputLabel value="Valor de Unidade:" />
+									<h:inputText size="7" />
+									<h:outputLabel value="Validade:" />
+									<h:inputText size="10" />
+								</h:panelGrid>
+								<h:panelGrid columns="1">
+									<h:commandButton value="  Enviar  " action="" />
+								</h:panelGrid>
+							</h:form>
+						</h:body></td>
+				</tr>
+			</table>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

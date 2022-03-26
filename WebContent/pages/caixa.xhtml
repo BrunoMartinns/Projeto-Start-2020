@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/templates/layout2.xhtml">
+	<h:outputStylesheet library="css" name="css/estilo.css" />
+	<ui:define name="menu">
+		<ui:include src="/includes/menu.xhtml" />
+	</ui:define>
+	<ui:define name="conteudo">
+
+		<div class="titulo">
+			<h1 align="center">CAIXA</h1>
+		</div>
+		<div align="center" class="vendas">
+			<table>
+
+				<tr>
+					<td align="center" valign="middle"><h:body>
+
+							<div class="pesquisa">
+								<h:form>
+									<p:messages id="messages" showDetail="true" />
+									<h:commandButton value=" Cadastrar Clientes"
+										action="cadastroclienteCaixa" />
+									<h:panelGrid columns="4" cellpadding="5"
+										style="margin-bottom:10px">
+										<h:inputText id="pesquisa" value="#{Produtos.codigoBarras}"
+											required="true" size="17" label="Keyword" />
+
+										<h:commandButton action="#{Produtos.Pesquisar}" value="Buscar" />
+									</h:panelGrid>
+								</h:form>
+							</div>
+							<h:form>
+								<h:panelGrid class="fonte" columns="2">
+									<h:outputLabel value="Nome do Produto:" />
+									<h:inputText maxlength="30" value="#{Produtos.nomeProduto}"
+										name="nomeDoProduto" size="30" />
+
+									<h:outputLabel value="Valor Unitario:" />
+									<h:inputText maxlength="30" value="#{Produtos.precoUnitario}"
+										name="valorUnitario" size="30" />
+
+									<h:outputLabel value="Quantidade do produto:" />
+									<h:inputText maxlength="7" value="#{Caixa.quantidadeProd}"
+										name="unidaDeMedida" size="7" />
+
+								</h:panelGrid>
+								<h:panelGrid columns="1">
+									<p:spacer width="1px" />
+									<h:commandButton value="  Inserir  " action="#{Caixa.Caixazin}" />
+								</h:panelGrid>
+								<p:spacer width="10px" />
+								<h:panelGrid class="fonte" columns="2">
+
+									<h:outputLabel value="Total:" />
+									<h:inputText maxlength="7" value="#" name="unidaDeMedida"
+										size="7" />
+								</h:panelGrid>
+
+							</h:form>
+							<h:form class="lista">
+								<p:fieldset>
+									<p:dataTable var="Produtos" value="#{Caixa.caixa}">
+
+										<p:column style="width:1px">
+											<h:outputText id="dragIcon" styleClass="ui-icon pi pi-plus" />
+											<p:draggable for="dragIcon" revert="true" helper="clone" />
+										</p:column>
+
+										<p:column headerText="Nome do Produto">
+											<h:outputText value="" />
+										</p:column>
+
+										<p:column headerText="Preço Unitario">
+											<h:outputText value="" />
+										</p:column>
+
+										<p:column headerText="Quantidade">
+											<h:outputText value="" />
+										</p:column>
+
+										<p:column headerText="Valor Final">
+											<h:outputText value="" />
+										</p:column>
+
+									</p:dataTable>
+								</p:fieldset>
+							</h:form>
+						</h:body></td>
+				</tr>
+			</table>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

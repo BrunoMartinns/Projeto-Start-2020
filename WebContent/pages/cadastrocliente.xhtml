@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/templates/layout.xhtml">
+	<ui:define name="menu">
+		<ui:include src="/includes/menu.xhtml" />
+	</ui:define>
+	<ui:define name="conteudo">
+		<h:outputStylesheet library="css" name="estilo.css" />
+		<script language="javascript">
+			function sem_numero(e, args) {
+				if (document.all) {
+					var evt = event.keyCode;
+				} else {
+					var evt = e.charCode;
+				}
+				var valid_chars = 'abcdefghijlmnopqrstuvxzwykABCDEFGHIJLMNOPQRSTUVXZWYK áéíóúâêôçãõü'
+						+ args;
+				var chr = String.fromCharCode(evt);
+				if (valid_chars.indexOf(chr) > -1) {
+					return true;
+				}
+				return false;
+			}
+		</script>
+
+		<script language="javascript">
+			function sem_acento(e, args) {
+				if (document.all) {
+					var evt = event.keyCode;
+				} else {
+					var evt = e.charCode;
+				}
+				var valid_chars = '0123456789';
+				var chr = String.fromCharCode(evt);
+				if (valid_chars.indexOf(chr) > -1) {
+					return true;
+				}
+				return false;
+			}
+		</script>
+
+		<div class="titulo">
+			<h1 align="center">CADASTRO DE CLIENTE</h1>
+		</div>
+		<div align="center" class="formulario">
+			<table>
+				<tr>
+					<td align="center" valign="middle"><h:body>
+							<h:form id="cadastro">
+								<p:messages showDetail="false" />
+								<h:panelGrid id="painel" class="fonte" columns="3">
+									<h:outputLabel value="Nome Cliente:" />
+									<p:inputText onkeypress="return sem_numero(event);"
+										maxlength="60" value="#{Cadastrar.nomeCliente}"
+										required="true"
+										requiredMessage="Campo 'Nome do cliente' necessário!"
+										name="nomeCliente" size="61" />
+									<p:spacer width="5px" />
+
+									<h:outputLabel value="Data nascimento:" />
+									<p:inputMask maxlength="10" value="#{Cadastrar.dataNascimento}"
+										mask="99/99/9999" required="true"
+										requiredMessage="Campo 'Data de nascimento' necessário!"
+										name="dataNascimento" size="8" />
+									<p:spacer width="5px" />
+
+									<h:outputLabel value="CPF:" />
+									<p:inputText type="text" onkeypress="return sem_acento(event);"
+										required="true" requiredMessage=" Campo 'CPF' necessário!"
+										maxlength="11" value="#{Cadastrar.cpf}" name="cpf" size="11">
+										<f:validator validatorId="cpf" />
+									</p:inputText>
+
+									<p:spacer width="5px" />
+									<h:outputLabel value="Contato:" />
+									<p:inputMask maxlength="14" value="#{Cadastrar.telefone}"
+										mask="(99) 99999-9999" required="true"
+										requiredMessage="Campo 'Telefone' necessário!" name="telefone"
+										size="20">
+									</p:inputMask>
+									<p:spacer width="5px" />
+
+									<h:outputLabel value="Bairro/rua/nº:" />
+									<p:inputText maxlength="60" value="#{Cadastrar.endereco}"
+										required="true" requiredMessage="Campo 'Endereço' necessário!"
+										name="endereco" size="60" />
+								</h:panelGrid>
+								<h:panelGrid columns="1">
+									<p:spacer width="1px" />
+									<h:commandButton value="  Enviar  "
+										action="#{Cadastrar.Insert}" onclick="if (!confirm('Confirmar cadastro?')) return false;"/>
+								</h:panelGrid>
+							</h:form>
+						</h:body></td>
+				</tr>
+			</table>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

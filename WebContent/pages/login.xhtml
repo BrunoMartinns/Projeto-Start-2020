@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/templates/layout2.xhtml">
+
+	<ui:define name="menu">
+		<ui:include src="/includes/menu.xhtml" />
+	</ui:define>
+	<ui:define name="conteudo">
+
+		<h:outputStylesheet library="css" name="estilo.css" />
+		<div id="cx1"></div>
+
+		<div id="cx-login">
+			<table border="0" align="center">
+				<tr>
+					<td id="outro" align="center" valign="middle"><h:body>
+
+							<div class="logo">
+								<h:graphicImage library="imagens" name="SistemasTynesLogo.png"
+									widht="150" height="150"></h:graphicImage>
+
+							</div>
+							<p class="fonte">Gerenciando seu negócio</p>
+							<h:form>
+								<p:messages showDetail="false" />	
+								<h:panelGrid class="fonte" align="center" columns="2">
+									<h:outputLabel align="center" value="Usuário:" />
+									<h:inputText required="true"
+										requiredMessage="Campo 'Login' necessário!" align="center"
+										size="15" value="#{login.user}" />
+									<h:outputLabel align="center" value="  Senha:" />
+									<h:inputSecret required="true"
+										requiredMessage="Campo 'Senha' necessário!" align="center"
+										size="15" value="#{login.password}" />
+								</h:panelGrid>
+								<h:panelGrid columns="4">
+									<h:outputLabel value="⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀" />
+								</h:panelGrid>
+								<h:panelGrid columns="4">
+									<h:commandButton class="fontebottom" value="  Entrar  "
+										action="#{login.Acessar}" />
+								</h:panelGrid>
+								<h:panelGrid columns="4">
+									<h:outputLabel value="⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀" />
+								</h:panelGrid>
+							</h:form>
+						</h:body></td>
+				</tr>
+			</table>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

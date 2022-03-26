@@ -1,0 +1,116 @@
+@charset "ISO-8859-1";
+
+/*menu topo*/
+.ui-layout-north { /*menu borda*/
+	z-index: 10 !important;
+	overflow: visible !important;
+	background-color: #578BF2 !important;
+}
+
+.ui-layout-north .ui-layout-unit-content { /*menu interno*/
+	overflow: visible !important;
+	background-color: #6D99F2 !important;
+}
+
+/*menu*/
+.ui-layout-west { /*menu borda*/
+	z-index: 10 !important;
+	overflow: visible !important;
+	background-color: #578BF2 !important;
+}
+
+.ui-layout-west .ui-layout-unit-content { /*menu interno*/
+	overflow: visible !important;
+	background-color: #6D99F2 !important;
+}
+
+/*Conteúdo*/
+.ui-layout-center { /*conteúdo borda*/
+	background-color: #578BF2 !important;
+}
+
+.ui-layout-center .ui-layout-unit-content { /*conteúdo interno*/
+	background-color: #F2F2F2 !important;
+}
+
+.login-back {
+	
+}
+
+.titulo {
+	font-size: 150%;
+	margin-top: 50px;
+	width: 100%;
+}
+
+.formulario {
+	position: relative;
+	top: 100px;
+	left: 0px;
+	right: 0px;
+
+}
+
+.vendas {
+	position: relative;
+	top: 100px;
+	margin-left: 20%;
+	margin-right: 20%;
+
+}
+
+.fonte {
+	font-size: 100%;
+}
+
+.lista {
+	position: relative;
+	top: 60px;
+	left: 0px;
+	right: 0px;
+}
+
+.logomenu {
+	border: 2px #6C808C solid;
+}
+
+.pesquisa {
+	top: 100px;
+}
+
+#cx1 {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-image: linear-gradient(#5988FF, #D0DDFF)
+		/*background-color: #6D99F2;*/
+}
+
+#cx-login {
+	position: relative;
+	top: 160px;
+}
+
+#outro {
+	border: 2px #6C808C solid;
+	border-radius: 5px;
+	background-color: #F2F2F2;
+}
+
+.logo {
+	padding-top: 7px;
+	padding-bottom: 10px;
+	border-bottom: 1.5px #6C808C solid;
+	margin-left: 7%;
+	margin-right: 7%;
+}
+
+.fonte {
+	font-size: 120%;
+}
+
+.fontebottom {
+	font-size: 107%;
+}

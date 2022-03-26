@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/templates/layout.xhtml">
+	<ui:define name="menu">
+		<ui:include src="/includes/menu.xhtml" />
+	</ui:define>
+	<ui:define name="conteudo">
+		<script language="javascript">
+			function sem_numero(e, args) {
+				if (document.all) {
+					var evt = event.keyCode;
+				} else {
+					var evt = e.charCode;
+				}
+				var valid_chars = 'abcdefghijlmnopqrstuvxzwykABCDEFGHIJLMNOPQRSTUVXZWYK áéíóúâêôçãõü'
+						+ args;
+				var chr = String.fromCharCode(evt);
+				if (valid_chars.indexOf(chr) > -1) {
+					return true;
+				}
+				return false;
+			}
+		</script>
+
+		<script language="javascript">
+			function sem_acento(e, args) {
+				if (document.all) {
+					var evt = event.keyCode;
+				} else {
+					var evt = e.charCode;
+				}
+				var valid_chars = '0123456789' + args;
+				var chr = String.fromCharCode(evt);
+				if (valid_chars.indexOf(chr) > -1) {
+					return true;
+				}
+				return false;
+			}
+		</script>
+
+
+		<h:outputStylesheet library="css" name="estilo.css" />
+		<p:messages showDetail="false" />
+		<div class="titulo">
+			<h1 align="center">EDIÇÃO DE CLIENTE</h1>
+		</div>
+		<div align="center" class="formulario">
+			<table>
+				<tr>
+					<td align="center" valign="middle"><h:body>
+
+							<div class="pesquisa">
+								<h:form>
+									<p:messages id="messages" showDetail="true" />
+
+									<h:panelGrid columns="4" cellpadding="5"
+										style="margin-bottom:10px">
+										<h:inputText id="pesquisa" value="#{Cadastrar.cpf}"
+											required="true" label="Pesquisa" />
+										<p:watermark for="pesquisa" value="Pesquise na lista"
+											id="watermar" />
+										<h:commandButton action="#{Cadastrar.Pesquisar}"
+											value="Procurar" />
+									</h:panelGrid>
+								</h:form>
+							</div>
+							<h:form id="cadastro">
+
+								<h:panelGrid class="fonte" columns="3">
+									<h:outputLabel value="Nome Cliente:" />
+									<h:inputText maxlength="60" value="#{Cadastrar.nomeCliente}"
+										onkeypress="return sem_numero(event);" required="true"
+										requiredMessage="Campo 'Nome do cliente' necessário!"
+										name="nomeCliente" size="61" />
+									<p:spacer width="5px" />
+
+									<h:outputLabel value="Data nascimento:" />
+									<h:inputText maxlength="10" value="#{Cadastrar.dataNascimento}"
+										onkeypress="return sem_acento(event);" required="true"
+										requiredMessage="Campo 'Data nascimento' necessário!"
+										name="dataNascimento" size="10" />
+									<p:spacer width="5px" />
+
+									<h:outputLabel value="CPF:" />
+									<h:inputText maxlength="11" value="#{Cadastrar.cpf}" name="cpf"
+										onkeypress="return sem_acento(event);" required="true"
+										requiredMessage="Campo 'CPF' necessário!" size="11"
+										readonly="true" />	
+									<p:spacer width="5px" />
+
+									<h:outputLabel value="Telefone:" />
+									<h:inputText maxlength="15" value="#{Cadastrar.telefone}"
+										onkeypress="return sem_acento(event);" required="true"
+										requiredMessage="Campo 'Telefone' necessário!" name="telefone"
+										size="15" />
+									<p:spacer width="5px" />
+
+									<h:outputLabel value="Bairro/rua/nº:" />
+									<h:inputText maxlength="60" value="#{Cadastrar.endereco}"
+										onkeypress="return sem_numero(event);" required="true"
+										requiredMessage="Campo 'Endereço' necessário!" name="endereco"
+										size="60" />
+
+								</h:panelGrid>
+								<p:spacer width="10px" />
+								<h:panelGrid columns="6">
+									<p:spacer width="1px" />
+									<h:commandButton update="cadastroproduto" value="  Deletar  "
+										action="#{Cadastrar.Delete}" />
+									<p:spacer width="10px" />
+									<h:commandButton update="cadastroproduto" value="  Alterar  "
+										action="#{Cadastrar.Update}" />
+
+								</h:panelGrid>
+							</h:form>
+						</h:body></td>
+				</tr>
+			</table>
+		</div>
+	</ui:define>
+
+	<ui:define name="footer">
+     rodapé
+</ui:define>
+</ui:composition>
+</html>

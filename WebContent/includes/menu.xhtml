@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:outputStylesheet name="estilos.css"></h:outputStylesheet>
+	<style type="text/css">
+.logomenu {
+	margin: 10px;
+	border: 2px #6C808C solid;
+	background-color: #F2F2F2;
+}
+
+.imagem {
+	margin-left: 17px;
+	margin-top: 3.5px;
+}
+</style>
+
+	<div class="logomenu">
+		<a href="grafico.xhtml"><h:graphicImage class="imagem"
+				library="imagens" name="SistemasTynesLogo.png" widht="150"
+				height="150"></h:graphicImage></a>
+	</div>
+	<h:form>
+
+		<p:growl id="messages" showDetail="true" />
+
+		<p:tieredMenu class="menu" style="width:200px">
+
+			<p:submenu label="Clientes" icon="pi pi-home">
+				<p:menuitem value="Cadastrar Cliente" action="cadastrocliente"
+					icon="pi pi-times" />
+				<p:menuitem value="Lista de Clientes" action="listacliente"
+					icon="pi pi-times" />
+				<p:menuitem value="Editar clientes" action="edicaocliente"
+					icon="pi pi-times" />
+			</p:submenu>
+			<p:submenu label="Funcionários" icon="pi pi-home">
+				<p:menuitem value="Cadastrar Funcionário"
+					action="cadastrofuncionarios" icon="pi pi-times" />
+				<p:menuitem value="Lista de Funcionários" action="listafuncionario"
+					icon="pi pi-times" />
+				<p:menuitem value="Editar Funcionários" action="edicaofuncionario"
+					icon="pi pi-times" />
+			</p:submenu>
+			<p:submenu label="Produtos" icon="pi pi-home">
+				<p:menuitem aling="center" value="Cadastro de Produtos"
+					action="cadastroproduto" icon="pi pi-times" />
+				<p:menuitem value="Lista de produtos" action="listaprodutos"
+					icon="pi pi-times" />
+				<p:menuitem value="Editar produtos" action="edicaoproduto"
+					icon="pi pi-times" />
+				<p:menuitem value="Estoque" action="estoque" icon="pi pi-times" />
+			</p:submenu>
+			<p:separator />
+			<p:menuitem value="Caixa" action="caixaAdmin" icon="pi pi-times" />
+			<p:menuitem value="Relatório" action="#{iew.sea}" icon="pi pi-times" />
+			<p:menuitem value="Sair" action="login"
+				icon="pi pi-times" />
+		</p:tieredMenu>
+	</h:form>
+</ui:composition>

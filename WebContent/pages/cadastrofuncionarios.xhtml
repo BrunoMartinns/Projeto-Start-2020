@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/templates/layout.xhtml">
+	<ui:define name="menu">
+		<ui:include src="/includes/menu.xhtml" />
+	</ui:define>
+	<ui:define name="conteudo">
+		<h:outputStylesheet library="css" name="estilo.css" />
+		<script language="javascript">
+			function sem_numero(e, args) {
+				if (document.all) {
+					var evt = event.keyCode;
+				} else {
+					var evt = e.charCode;
+				}
+				var valid_chars = 'abcdefghijlmnopqrstuvxzwykABCDEFGHIJLMNOPQRSTUVXZWYK áéíóúâêôçãõü'
+						+ args;
+				var chr = String.fromCharCode(evt);
+				if (valid_chars.indexOf(chr) > -1) {
+					return true;
+				}
+				return false;
+			}
+		</script>
+
+		<script language="javascript">
+			function sem_acento(e, args) {
+				if (document.all) {
+					var evt = event.keyCode;
+				} else {
+					var evt = e.charCode;
+				}
+				var valid_chars = '0123456789' + args;
+				var chr = String.fromCharCode(evt);
+				if (valid_chars.indexOf(chr) > -1) {
+					return true;
+				}
+				return false;
+			}
+		</script>
+
+		<div class="titulo">
+			<h1 align="center">CADASTRO DE FUNCIONÁRIOS</h1>
+		</div>
+		<div align="center" class="formulario">
+			<table>
+				<tr>
+					<td align="center" valign="middle"><h:body>
+							<h:form id="cadastro">
+								<p:messages showDetail="false" />
+								<h:panelGrid class="fonte" columns="3">
+
+									<h:outputLabel value="Nome do Funcionario:" />
+									<p:inputText name="nomeFuncionarios" size="61"
+										onkeypress="return sem_numero(event);" required="true"
+										requiredMessage="Campo 'Nome do Funcionário' necessário!"
+										maxlength="60" value="#{Funcionarios.nomeFuncionario}" />
+									<p:spacer width="5px" />
+
+									<h:outputLabel value="Cargo:" />
+									<p:inputText maxlength="25" value="#{Funcionarios.cargo}"
+										onkeypress="return sem_numero(event);" required="true"
+										requiredMessage="Campo 'Cargo' necessário!" name="Cargo"
+										size="25" />
+									<p:spacer width="5px" />
+
+									<h:outputLabel value="Login:" />
+									<p:inputText maxlength="10" value="#{Funcionarios.login}"
+										required="true" requiredMessage="Campo 'Login' necessário!"
+										name="Login" size="10" />
+									<p:spacer width="5px" />
+
+									<h:outputLabel value="Senha:" />
+									<p:inputText minlength="6" maxlength="8"
+										onkeypress="return sem_acento(event);" required="true"
+										requiredMessage="Campo 'Senha' necessário!"
+										value="#{Funcionarios.senha}" name="Senhal" size="8" />
+
+								</h:panelGrid>
+								<h:panelGrid columns="1">
+									<p:spacer width="1px" />
+									<h:commandButton update="grafico" value="  Enviar  "
+										action="#{Funcionarios.Insert}" onclick="if (!confirm('Confirmar cadastro?')) return false;"/>
+
+								</h:panelGrid>
+							</h:form>
+						</h:body></td>
+				</tr>
+			</table>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

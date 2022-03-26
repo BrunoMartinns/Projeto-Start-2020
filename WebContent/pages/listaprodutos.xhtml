@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/templates/layout.xhtml">
+	<ui:define name="menu">
+		<ui:include src="/includes/menu.xhtml" />
+	</ui:define>
+	<ui:define name="conteudo">
+		<div class="titulo">
+			<h1 align="center">LISTA DE PRODUTOS</h1>
+		</div>
+		<h:outputStylesheet name="estilos.css"></h:outputStylesheet>
+
+		<h:form class="lista">
+			<p:fieldset id="availableCarsField">
+				<p:dataTable var="Produtos" value="#{Produtos.produtos}">
+
+					<p:column style="width:1px">
+						<h:outputText id="dragIcon" styleClass="ui-icon pi pi-plus" />
+						<p:draggable for="dragIcon" revert="true" helper="clone" />
+					</p:column>
+
+					<p:column headerText="COD de Barras">
+						<h:outputText value="#{Produtos.codigoBarras}" />
+					</p:column>
+
+					<p:column headerText="Nome do produto">
+						<h:outputText value="#{Produtos.nomeProduto}" />
+					</p:column>
+
+					<p:column headerText="Uni. medida">
+						<h:outputText value="#{Produtos.unidadeMedida}" />
+					</p:column>
+
+					<p:column headerText="Seção">
+						<h:outputText value="#{Produtos.secao}" />
+					</p:column>
+
+					<p:column headerText="Estoque disponivel">
+						<h:outputText value="#{Produtos.quantidadeTotal}" />
+					</p:column>
+					
+					<p:column headerText="Preço Unitario">
+						<h:outputText value="#{Produtos.precoUnitario}" />
+					</p:column>
+					
+					
+				</p:dataTable>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

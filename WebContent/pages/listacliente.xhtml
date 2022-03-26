@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/templates/layout.xhtml">
+	<ui:define name="menu">
+		<ui:include src="/includes/menu.xhtml" />
+	</ui:define>
+	<ui:define name="conteudo">
+		<div class="titulo">
+			<h1 align="center">LISTA DE CLIENTES</h1>
+		</div>
+		<h:outputStylesheet name="estilos.css"></h:outputStylesheet>
+		<h:form class="lista">
+			<p:fieldset>
+				<p:dataTable value="#{Cadastrar.usuarios}" var="Cadastrar" >
+					<p:column style="width:1px">
+						<h:outputText id="dragIcon" styleClass="ui-icon pi pi-plus" />
+						<p:draggable for="dragIcon" revert="true" helper="clone" />
+
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{Cadastrar.nomeCliente}" />
+					</p:column>
+
+					<p:column headerText="Data de Nascimento">
+						<h:outputText value="#{Cadastrar.dataNascimento}" />
+					</p:column>
+
+					<p:column headerText="CPF">
+						<h:outputText value="#{Cadastrar.cpf}" />
+					</p:column>
+
+					<p:column headerText="Telefone">
+						<h:outputText value="#{Cadastrar.telefone}" />
+					</p:column>
+
+					<p:column headerText="Endereço">
+						<h:outputText value="#{Cadastrar.endereco}" />
+
+					</p:column>
+				</p:dataTable>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

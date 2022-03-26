@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/templates/layout.xhtml">
+	<ui:define name="menu">
+		<ui:include src="/includes/menu.xhtml" />
+	</ui:define>
+	<ui:define name="conteudo">
+		<div class="titulo">
+			<h1 align="center">LISTA DE FUNCIONARIOS</h1>
+		</div>
+		<h:outputStylesheet name="estilos.css"></h:outputStylesheet>
+		<h:form class="lista">
+			<p:fieldset>
+				<p:dataTable value="#{Funcionarios.funcionario}" var="Funcionarios">
+					<p:column style="width:1px">
+						<h:outputText id="dragIcon" styleClass="ui-icon pi pi-plus" />
+						<p:draggable for="dragIcon" revert="true" helper="clone" />
+
+					</p:column>
+					<p:column headerText="Id">
+						<h:outputText value="#{Funcionarios.idFuncionario}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText align="center"
+							value="#{Funcionarios.nomeFuncionario}" />
+					</p:column>
+					<p:column headerText="Cargo">
+						<h:outputText value="#{Funcionarios.cargo}" />
+					</p:column>
+					<p:column headerText="Login">
+						<h:outputText value="#{Funcionarios.login}" />
+					</p:column>
+
+					<p:column headerText="Senha">
+						<h:outputText value="#{Funcionarios.senha}" />
+					</p:column>
+				</p:dataTable>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

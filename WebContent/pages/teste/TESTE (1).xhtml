@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="conteudo">
+		<h:head>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			<title>Fazer login no Tynes</title>
+
+			<style type="text/css">
+#cx1 {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-image: linear-gradient(#5988FF, #D0DDFF)
+		/*background-color: #6D99F2;*/
+}
+
+#cx-login {
+	position: relative;
+	top: 160px;
+}
+
+#outro {
+	border: 2px #6C808C solid;
+	border-radius: 5px;
+	background-color: #F2F2F2;
+}
+
+.logo {
+	padding-top: 7px;
+	padding-bottom: 10px;
+	border-bottom: 1.5px #6C808C solid;
+	margin-left: 7%;
+	margin-right: 7%;
+}
+
+.fonte {
+	font-size: 120%;
+}
+
+.fontebottom {
+	font-size: 107%;
+}
+</style>
+		</h:head>
+
+
+		<h:body>
+			<div id="cx1"></div>
+
+			<div id="cx-login">
+				<table border="0" align="center">
+					<tr>
+						<td id="outro" align="center" valign="middle"><h:body>
+
+								<div class="logo">
+									<h:graphicImage library="imagens" name="SistemasTynesLogo.png"
+										widht="150" height="150"></h:graphicImage>
+
+								</div>
+								<p class="fonte">Gerenciando seu negócio</p>
+								<h:form>
+									<h:panelGrid class="fonte" align="center" columns="2">
+										<h:outputLabel align="center" value="Usuário:" />
+										<h:inputText align="center" size="15" value=" " />
+										<h:outputLabel align="center" value="  Senha:" />
+										<h:inputSecret align="center" size="15"
+											value=" " />
+									</h:panelGrid>
+									<h:panelGrid columns="4">
+										<h:outputLabel value="⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀" />
+									</h:panelGrid>
+									<h:panelGrid columns="4">
+										<h:commandButton class="fontebottom" value="  Entrar  "
+											action="#{login.Acessar}" />
+									</h:panelGrid>
+									<h:panelGrid columns="4">
+										<h:outputLabel value="⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀" />
+									</h:panelGrid>
+								</h:form>
+							</h:body></td>
+					</tr>
+				</table>
+			</div>
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>
